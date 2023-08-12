@@ -6,11 +6,17 @@ import Header from "../../components/Header";
 import ProductDetails from "../../components/ProductDetails";
 import { fetchProduct, fetchProducts, ProductType } from "../../services/products";
 
+import { db } from "@vercel/postgres";
+
 export const getStaticProps: GetStaticProps = async (context) => {
     const id = context.params?.id
 
     if (typeof id === 'string') {
-        const product = await fetchProduct(id);
+        // const product = await fetchProduct(id);
+
+        const client = await db.connect();
+        const { rows } = await client.sql`SELECT * FROM products WHERE products.id=${Number(id)}`;
+        const product = rows;
 
         return { props: { product }, revalidate: 10 }
     }
@@ -19,9 +25,18 @@ export const getStaticProps: GetStaticProps = async (context) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const products = await fetchProducts();
+    // const products = await fetchProducts();
+    
+    // const paths = products.map(product => {
+    //     return { params: { id: product.id.toString() } }
+    // });
 
-    const paths = products.map(product => {
+    // return { paths, fallback: false }
+
+    const client = await db.connect();
+    const { rows } = await client.sql`SELECT * FROM products`
+
+    const paths = rows.map(product => {
         return { params: { id: product.id.toString() } }
     });
 

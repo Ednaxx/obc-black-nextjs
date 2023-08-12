@@ -7,9 +7,15 @@ import { Container } from 'reactstrap'
 import Header from '../components/Header'
 import ProductsList from '../components/ProductsList'
 import { fetchProducts, ProductType } from '../services/products'
+import { db } from '@vercel/postgres'
 
 export const getStaticProps: GetStaticProps = async () => {
-  const products = await fetchProducts();
+  // const products = await fetchProducts();
+
+  const client = await db.connect();
+  const { rows } = await client.sql`SELECT * FROM products`;
+  const products = rows;
+
   return { props: { products } }
 }
 
