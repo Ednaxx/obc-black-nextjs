@@ -4,15 +4,15 @@ export type ProductType = {
     description: string
     price: string
     image_id: number
-    inStock: number
+    in_stock: number
   }
   
   export const fetchProducts = async () => {
-    const products: ProductType[] = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/api/products`).then(res => res.json());
+    const products: ProductType[] = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products`).then(res => res.json());
     return products
   }
   
   export const fetchProduct = async (id: string) => {
-    const product: ProductType[] = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/api/products/${id}`).then(res => res.json());
+    const product: ProductType[] = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products/${id}`).then(res => res.json());
     return product[0]
   }

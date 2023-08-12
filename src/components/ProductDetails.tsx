@@ -9,7 +9,7 @@ type ProductDetailsProps = {
 }
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
-    const [toastIsOpen, setToastIsOpen] = useState(false)
+    const [toastIsOpen, setToastIsOpen] = useState(false);
 
     return (
         <Row>
@@ -34,14 +34,14 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
                     {product.description}
                 </p>
 
-                <p className="text-muted">Em estoque: {product.inStock}</p>
+                <p className="text-muted">Em estoque: {product.in_stock}</p>
 
                 <Button
                     color="dark"
                     className="my-3 pb-2"
                     onClick={() => {
-                        setToastIsOpen(true)
-                        // setTimeout(() => setToastIsOpen(false), 1000 * 3)
+                        setToastIsOpen(true);
+                        setTimeout(() => setToastIsOpen(false), 1000 * 3);
                     }}
                 >
                     Compre agora
