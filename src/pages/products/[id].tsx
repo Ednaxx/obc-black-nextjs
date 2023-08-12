@@ -16,7 +16,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
         const client = await db.connect();
         const { rows } = await client.sql`SELECT * FROM products WHERE products.id=${Number(id)}`;
-        const product = rows;
+        const product = rows[0];
 
         return { props: { product }, revalidate: 10 }
     }
