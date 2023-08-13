@@ -5,14 +5,14 @@ const Header = () => {
   return (
     <Navbar container="md" color="dark" dark>
       <Link className="navbar-brand" href="/" passHref>
-          Início
+          Start
       </Link>
       <Nav className="flex-row" navbar>
         <Link className="nav-link me-2" href="/products">
-            Produtos
+            Products
         </Link>
         <Link className="nav-link" href="/cart">
-            Carrinho
+            Cart
         </Link>
       </Nav>
     </Navbar>

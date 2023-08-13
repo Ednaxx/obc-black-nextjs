@@ -5,13 +5,19 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
     const { id } = req.query;
 
     try {
-        const client = await db.connect();
-        const { rows } = await client.sql`SELECT * FROM products WHERE products.id=${Number(id)}`
+        const product = await getProduct(Number(id))
 
-        res.status(200).json(rows);
+        res.status(200).json(product);
     }
     catch (error) {
         res.status(500).send(error);
         console.log(error);
     }
+}
+
+export async function getProduct(id: Number) {
+    const client = await db.connect();
+    const { rows } = await client.sql`SELECT * FROM products WHERE products.id=${Number(id)}`;
+
+    return rows[0];
 }

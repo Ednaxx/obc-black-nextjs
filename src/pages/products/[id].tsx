@@ -4,19 +4,15 @@ import { ReactNode } from "react";
 import { Container } from "reactstrap";
 import Header from "../../components/Header";
 import ProductDetails from "../../components/ProductDetails";
-import { fetchProduct, fetchProducts, ProductType } from "../../services/products";
-
-import { db } from "@vercel/postgres";
+import { ProductType } from "../../services/products";
+import { getProducts } from "../api/products";
+import { getProduct } from "../api/products/[id]";
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const id = context.params?.id
 
     if (typeof id === 'string') {
-        // const product = await fetchProduct(id);
-
-        const client = await db.connect();
-        const { rows } = await client.sql`SELECT * FROM products WHERE products.id=${Number(id)}`;
-        const product = rows[0];
+        const product = await getProduct(Number(id));
 
         return { props: { product }, revalidate: 10 }
     }
@@ -25,18 +21,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    // const products = await fetchProducts();
-    
-    // const paths = products.map(product => {
-    //     return { params: { id: product.id.toString() } }
-    // });
+    const products = await getProducts();
 
-    // return { paths, fallback: false }
-
-    const client = await db.connect();
-    const { rows } = await client.sql`SELECT * FROM products`
-
-    const paths = rows.map(product => {
+    const paths = products.map(product => {
         return { params: { id: product.id.toString() } }
     });
 

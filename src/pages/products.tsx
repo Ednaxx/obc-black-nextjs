@@ -6,15 +6,11 @@ import { ReactNode } from 'react'
 import { Container } from 'reactstrap'
 import Header from '../components/Header'
 import ProductsList from '../components/ProductsList'
-import { fetchProducts, ProductType } from '../services/products'
-import { db } from '@vercel/postgres'
+import { ProductType } from '../services/products'
+import { getProducts } from './api/products'
 
 export const getStaticProps: GetStaticProps = async () => {
-  // const products = await fetchProducts();
-
-  const client = await db.connect();
-  const { rows } = await client.sql`SELECT * FROM products`;
-  const products = rows;
+  const products = await getProducts();
 
   return { props: { products } }
 }
@@ -26,8 +22,8 @@ const Products: NextPage = (props: {
   return (
     <>
       <Head>
-        <title>Nossos Produtos</title>
-        <meta name="description" content="Conheça todos os nossos produtos" />
+        <title>Our Products</title>
+        <meta name="description" content="Explore our products!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -36,7 +32,7 @@ const Products: NextPage = (props: {
       <main>
         <Container className="mb-5">
           <h1 className="my-5">
-            Nossos Produtos
+            Our Products
           </h1>
 
           {<ProductsList products={props.products!} />}

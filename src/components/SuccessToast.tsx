@@ -11,7 +11,7 @@ const SuccessToast = (props: {
       fade
     >
       <ToastBody className="d-flex justify-content-between">
-        Produto adicionado ao carrinho.
+        Product added to cart.
         <Button
           close
           className="btn-close-white"
