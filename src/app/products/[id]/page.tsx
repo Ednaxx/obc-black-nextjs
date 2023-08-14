@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import ProductDetails from "./ProductDetails";
-import { getProduct } from "@/pages/api/products/[id]";
+import { getProduct } from "@/controller/products";
 
 
 export async function generateMetadata ( { params }: { params: { id: string }} ): Promise<Metadata> {

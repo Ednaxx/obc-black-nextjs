@@ -1,5 +1,5 @@
 import ProductsList from "@/app/products/ProductsList";
-import { getProducts } from "@/pages/api/products";
+import { getProducts } from "@/controller/products";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
