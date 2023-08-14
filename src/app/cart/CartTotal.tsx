@@ -1,7 +1,5 @@
-// src/components/CartTotal.tsx
-
 import { Card, CardBody } from "reactstrap";
-import { useCart } from "../hooks/useCart";
+import { useCart } from "../useCart";
 
 const CartTotal = () => {
   const { cart } = useCart()

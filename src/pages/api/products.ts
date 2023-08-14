@@ -1,3 +1,4 @@
+import { ProductType } from "@/services/products";
 import { db } from "@vercel/postgres";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -16,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 export async function getProducts() {
     const client = await db.connect();
-    const { rows } = await client.sql`SELECT * FROM products`
+    const { rows } = await client.sql`SELECT * FROM products`;
 
-    return rows
+    return rows as ProductType[];
 }

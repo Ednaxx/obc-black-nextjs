@@ -1,22 +1,17 @@
-// pages/index.tsx
+"use client";
 
-import Header from "@/components/Header"
-import { NextPage } from "next"
-import Head from "next/head"
-import Link from "next/link"
+import { Metadata } from "next"
 import { Button, Container } from "reactstrap"
+import Link from "next/link"
 
-const Home: NextPage = () => {
+export const metadata: Metadata = {
+  title: 'BLACK-NextJS',
+  description: 'Explore our products!'
+}
+
+export default function Index() {
   return (
     <>
-      <Head>
-        <title>Start</title>
-        <meta name="description" content="Explore our products!" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <Header />
-
       <main >
         <Container className="py-5 text-center">
           <h1 className="mt-5 display-1">
@@ -35,5 +30,3 @@ const Home: NextPage = () => {
     </>
   )
 }
-
-export default Home

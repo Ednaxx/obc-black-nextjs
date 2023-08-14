@@ -1,19 +1,14 @@
-// src/components/ProductCard.tsx
+"use client";
 
 import Image from "next/image"
 import Link from "next/link"
 import React, { useState } from "react"
 import { Button, Card, CardBody, CardSubtitle } from "reactstrap"
-import { ProductType } from "../services/products"
-import SuccessToast from "./SuccessToast"
-import { useCart } from "@/hooks/useCart"
+import { ProductType } from "../../services/products"
+import SuccessToast from "../SuccessToast"
+import { useCart } from "@/app/useCart"
 
-type ProductCardProps = {
-    product: ProductType
-    className: string
-}
-
-const ProductCard: React.FC<ProductCardProps> = ({ product, className }) => {
+export default function ProductCard({ product, className }: { product: ProductType, className: string }) {
     const [toastIsOpen, setToastIsOpen] = useState(false);
     const { id, name, image_id, price } = product;
     const { addProduct } = useCart();
@@ -56,5 +51,3 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className }) => {
         </>
     )
 }
-
-export default ProductCard

@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Button, Col, Row, Table } from "reactstrap";
-import { useCart } from "../hooks/useCart";
-import { ProductType } from "../services/products";
+import { useCart } from "../useCart";
+import { ProductType } from "../../services/products";
 
 type CartEntry = {
   product: ProductType
