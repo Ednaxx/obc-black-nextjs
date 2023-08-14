@@ -1,13 +1,8 @@
 "use client";
 
-import { Metadata } from "next"
+
 import { Button, Container } from "reactstrap"
 import Link from "next/link"
-
-export const metadata: Metadata = {
-  title: 'BLACK-NextJS',
-  description: 'Explore our products!'
-}
 
 export default function Index() {
   return (
