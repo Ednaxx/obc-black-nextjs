@@ -1,5 +1,5 @@
 import ProductsList from "@/app/products/ProductsList";
-import { getProducts } from "@/controller/products";
+import { ProductType } from "@/services/products";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +8,11 @@ export const metadata: Metadata = {
 }
 
 export default async function Products() {
-    const products = await getProducts();
+
+    const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products/`).then( async (res) => await res.json());
+
+    const products: ProductType[] = [...data];
+
     return (
         <>
             <main>
