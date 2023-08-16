@@ -1,10 +1,9 @@
+import { getProducts } from "@/controller/products";
 import { ProductType } from "@/services/products";
-import { db } from "@vercel/postgres";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-    const client = await db.connect();
-    const { rows } = await client.sql`SELECT * FROM products`;
+    const products = await getProducts();
 
-    return NextResponse.json(rows) as NextResponse<ProductType[]>;
+    return NextResponse.json(products) as NextResponse<ProductType[]>;
 }
